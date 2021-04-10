@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>HTMLendris</title>
+        <link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="/css/htmlendris/main.css" crossorigin="anonymous">
+
+        <script src="/js/jquery/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="/js/bootstrap/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+        <script src="/js/htmlendris/Pieces/AbstractPiece.js" crossorigin="anonymous"></script>
+        <script src="/js/htmlendris/Pieces/PieceI.js" crossorigin="anonymous"></script>
+        <script src="/js/htmlendris/Pieces/PieceJ.js" crossorigin="anonymous"></script>
+        <script src="/js/htmlendris/Pieces/PieceL.js" crossorigin="anonymous"></script>
+        <script src="/js/htmlendris/Pieces/PieceO.js" crossorigin="anonymous"></script>
+        <script src="/js/htmlendris/Pieces/PieceS.js" crossorigin="anonymous"></script>
+        <script src="/js/htmlendris/Pieces/PieceT.js" crossorigin="anonymous"></script>
+        <script src="/js/htmlendris/Pieces/PieceZ.js" crossorigin="anonymous"></script>
+
+        <script src="/js/htmlendris/Squares/AbstractSquare.js" crossorigin="anonymous"></script>
+        <script src="/js/htmlendris/Squares/EmptySquare.js" crossorigin="anonymous"></script>
+        <script src="/js/htmlendris/Squares/FilledSquare.js" crossorigin="anonymous"></script>
+
+        <script src="/js/htmlendris/UIComponents/Diamants.js" crossorigin="anonymous"></script>
+        <script src="/js/htmlendris/UIComponents/Event.js" crossorigin="anonymous"></script>
+        <script src="/js/htmlendris/UIComponents/HeartBonus.js" crossorigin="anonymous"></script>
+        <script src="/js/htmlendris/UIComponents/Level.js" crossorigin="anonymous"></script>
+        <script src="/js/htmlendris/UIComponents/MultipleBonus.js" crossorigin="anonymous"></script>
+        <script src="/js/htmlendris/UIComponents/NextPiece.js" crossorigin="anonymous"></script>
+        <script src="/js/htmlendris/UIComponents/Playground.js" crossorigin="anonymous"></script>
+        <script src="/js/htmlendris/UIComponents/Points.js" crossorigin="anonymous"></script>
+        <script src="/js/htmlendris/UIComponents/Rank.js" crossorigin="anonymous"></script>
+        <script src="/js/htmlendris/UIComponents/StonesLeft.js" crossorigin="anonymous"></script>
+
+        <script src="/js/htmlendris/Utils/CanvasRenderer.js" crossorigin="anonymous"></script>
+        <script src="/js/htmlendris/Utils/Matrix.js" crossorigin="anonymous"></script>
+        <script src="/js/htmlendris/Utils/PlaygroundPiece.js" crossorigin="anonymous"></script>
+        <script src="/js/htmlendris/Utils/Point.js" crossorigin="anonymous"></script>
+
+        <script src="/js/htmlendris/main.js" crossorigin="anonymous"></script>
+        <script src="/js/htmlendris/Tetris.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div class="container-fluid">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="#">HTMLEndris</a>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+            </nav>
+        </div>
+
+        <div class="container-fluid">
+            <canvas id="playground-wall">
+            </canvas>
+        </div>
+    </body>
+</html>
