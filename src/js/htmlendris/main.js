@@ -11,8 +11,9 @@ function main() {
 
     const wallCanvas = document.getElementById('playground-wall');
     const canvasRenderer = new CanvasRenderer(wallCanvas, COLS, ROWS, BLOCK_SIZE);
+    const pieceProvider = new PieceProvider(COLS, ROWS);
 
-    const tetris = new Tetris(COLS, ROWS, canvasRenderer);
+    const tetris = new Tetris(COLS, ROWS, canvasRenderer, pieceProvider);
     tetris.reset();
 
     setInterval(tetris.step.bind(tetris), 1000);

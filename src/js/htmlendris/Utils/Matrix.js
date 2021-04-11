@@ -9,12 +9,10 @@ const Matrix = function(cols, rows) {
 /**
  * @param colIndex integer
  * @param rowIndex integer
- * @param piece AbsctractPiece
+ * @param pieceShape Matrix
  * @returns {Matrix}
  */
-Matrix.prototype.withPiece = function(colIndex, rowIndex, piece) {
-    const pieceShape = piece.getShape();
-
+Matrix.prototype.withPiece = function(colIndex, rowIndex, pieceShape) {
     const shapeRows = pieceShape.getRows();
     const shapeCols = pieceShape.getCols();
 
@@ -47,7 +45,7 @@ Matrix.prototype.withPlaygroundPiece = function(playgroundPiece) {
     return this.withPiece(
         playgroundPiece.getPosition().getX(),
         playgroundPiece.getPosition().getY(),
-        playgroundPiece.getPiece()
+        playgroundPiece.getShape()
     );
 };
 
@@ -61,7 +59,7 @@ Matrix.prototype.playgroundPieceFits = function(playgroundPiece) {
         this.withPiece(
             playgroundPiece.getPosition().getX(),
             playgroundPiece.getPosition().getY(),
-            playgroundPiece.getPiece()
+            playgroundPiece.getShape()
         );
         return true;
     } catch (exception) {

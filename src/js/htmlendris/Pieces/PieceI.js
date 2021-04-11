@@ -5,9 +5,9 @@ const PieceI = function(color) {
 
 PieceI.prototype = Object.create(AbstractPiece.prototype);
 
-PieceI.prototype.getShape = function() {
+PieceI.prototype.getShape = function(orientation) {
 
-    if (this.getOrientation() % 2 === 0) {
+    if (orientation % 2 === 0) {
         return matrixFromSquares([
             [new FilledSquare(this._color)],
             [new FilledSquare(this._color)],

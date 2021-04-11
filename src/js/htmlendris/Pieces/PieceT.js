@@ -5,25 +5,25 @@ const PieceT = function(color) {
 
 PieceT.prototype = Object.create(AbstractPiece.prototype);
 
-PieceT.prototype.getShape = function() {
+PieceT.prototype.getShape = function(orientation) {
 
-    if (this.getOrientation() === 0) {
+    if (orientation === 0) {
         return matrixFromSquares([
             [new FilledSquare(this._color), new FilledSquare(this._color), new FilledSquare(this._color)],
             [new EmptySquare(),  new FilledSquare(this._color), new EmptySquare()],
         ]);
-    } else if (this.getOrientation() === 1) {
+    } else if (orientation === 1) {
         return matrixFromSquares([
             [new EmptySquare(),  new FilledSquare(this._color)],
             [new FilledSquare(this._color), new FilledSquare(this._color)],
             [new EmptySquare(),  new FilledSquare(this._color)],
         ]);
-    } else if (this.getOrientation() === 2) {
+    } else if (orientation === 2) {
         return matrixFromSquares([
             [new EmptySquare(),  new FilledSquare(this._color), new EmptySquare()],
             [new FilledSquare(this._color), new FilledSquare(this._color), new FilledSquare(this._color)],
         ]);
-    } else if (this.getOrientation() === 3) {
+    } else if (orientation === 3) {
         return matrixFromSquares([
             [new FilledSquare(this._color), new EmptySquare()],
             [new FilledSquare(this._color), new FilledSquare(this._color)],
