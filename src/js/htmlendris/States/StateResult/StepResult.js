@@ -3,12 +3,14 @@
  * @param matrix Matrix
  * @param state AbstractState
  * @param currentPiece PlaygroundPiece
+ * @param shouldRedraw boolean
  * @constructor
  */
-const StepResult = function(matrix, state, currentPiece) {
+const StepResult = function(matrix, state, currentPiece, shouldRedraw) {
     this._matrix = matrix;
     this._state = state;
-    this._currentPiece = currentPiece
+    this._currentPiece = currentPiece;
+    this._shouldRedraw = shouldRedraw;
 };
 
 /**
@@ -25,7 +27,7 @@ StepResult.prototype.getMatrix = function() {
  */
 StepResult.prototype.getState = function() {
     return this._state;
-}
+};
 
 /**
  *
@@ -33,4 +35,12 @@ StepResult.prototype.getState = function() {
  */
 StepResult.prototype.getCurrentPiece = function() {
     return this._currentPiece;
-}
+};
+
+/**
+ *
+ * @returns {boolean}
+ */
+StepResult.prototype.shouldRedraw = function() {
+    return this._shouldRedraw;
+};

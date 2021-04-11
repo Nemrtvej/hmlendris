@@ -37,6 +37,42 @@ Matrix.prototype.withPiece = function(colIndex, rowIndex, pieceShape) {
 }
 
 /**
+ * @param colIndex integer
+ * @param rowIndex integer
+ * @param pieceShape Matrix
+ * @returns {Matrix}
+ */
+Matrix.prototype.withForcedPiece = function(colIndex, rowIndex, pieceShape) {
+    const shapeRows = pieceShape.getRows();
+    const shapeCols = pieceShape.getCols();
+
+    let copy = this.withSquare(0, 0, this.getSquare(0, 0));
+    for (let heightIndex = 0; heightIndex < shapeRows; heightIndex++) {
+        for (let widthIndex = 0; widthIndex < shapeCols; widthIndex++) {
+            try {
+                const newSquare = pieceShape.getSquare(heightIndex, widthIndex);
+                const currentSquare = this.getSquare(heightIndex + rowIndex, widthIndex + colIndex);
+                try {
+                    copy = copy.withSquare(heightIndex + rowIndex, widthIndex + colIndex, currentSquare.resolveCollision(newSquare));
+                } catch (exception) {
+                    if (exception instanceof CollisionException) {
+                        copy = copy.withSquare(heightIndex + rowIndex, widthIndex + colIndex, newSquare);
+                    }
+                }
+            } catch (exception) {
+                if (exception instanceof OutOfBoundsException) {
+                    throw new CollisionException();
+                } else {
+                    throw exception;
+                }
+            }
+        }
+    }
+
+    return copy;
+}
+
+/**
  *
  * @param playgroundPiece PlaygroundPiece
  * @returns {Matrix}

@@ -9,18 +9,19 @@ FallingPieceState.prototype = Object.create(AbstractState.prototype);
  * @param currentPlayground Matrix
  * @param currentPiece PlaygroundPiece
  * @param pieceProvider PieceProvider
+ * @param renderer CanvasRenderer
  *
  * @returns {StepResult}
  */
-FallingPieceState.prototype.step = function(currentPlayground, currentPiece, pieceProvider) {
-
+FallingPieceState.prototype.step = function(currentPlayground, currentPiece, pieceProvider, renderer) {
     const movedPiece = currentPiece.move(new Point(0, 1));
 
     if (currentPlayground.playgroundPieceFits(movedPiece)) {
-        return new StepResult(currentPlayground, this, movedPiece);
+        return new StepResult(currentPlayground, this, movedPiece, true);
     } else {
-        return new StepResult(currentPlayground.withPlaygroundPiece(currentPiece), this, pieceProvider.getNextPiece());
+        return new StepResult(currentPlayground.withPlaygroundPiece(currentPiece), new NewPieceState(), pieceProvider.getNextPiece(), true);
     }
+
 };
 
 
@@ -28,9 +29,11 @@ FallingPieceState.prototype.step = function(currentPlayground, currentPiece, pie
  * @param event
  * @param currentPlayground Matrix
  * @param currentPiece PlaygroundPiece
+ * @param pieceProvider PieceProvider
+ * @param renderer CanvasRenderer
  * @return {KeyPressResult}
  */
-FallingPieceState.prototype.onKeyPress = function(event, currentPlayground, currentPiece) {
+FallingPieceState.prototype.onKeyPress = function(event, currentPlayground, currentPiece, pieceProvider, renderer) {
 
     const CODE_ARROW_UP = 38;
     const CODE_ARROW_LEFT = 37;
@@ -40,7 +43,7 @@ FallingPieceState.prototype.onKeyPress = function(event, currentPlayground, curr
     let knownCodes = [CODE_ARROW_UP, CODE_ARROW_LEFT, CODE_ARROW_RIGHT, CODE_ARROW_DOWN];
 
     if (!knownCodes.includes(event.keyCode)) {
-        return new KeyPressResult(currentPlayground, currentPiece);
+        return new KeyPressResult(currentPlayground, this, currentPiece, true, false);
     }
 
     event.preventDefault();
@@ -49,28 +52,27 @@ FallingPieceState.prototype.onKeyPress = function(event, currentPlayground, curr
         if (event.keyCode === CODE_ARROW_UP) {
             const movedPiece = currentPiece.rotate(1);
             if (currentPlayground.playgroundPieceFits(movedPiece)) {
-                return new KeyPressResult(currentPlayground, movedPiece);
+                return new KeyPressResult(currentPlayground, this, movedPiece, true, false);
             }
         } else if (event.keyCode === CODE_ARROW_LEFT) {
             const movedPiece = currentPiece.move(new Point(-1, 0));
             if (currentPlayground.playgroundPieceFits(movedPiece)) {
-                return new KeyPressResult(currentPlayground, movedPiece);
+                return new KeyPressResult(currentPlayground, this, movedPiece, true, false);
             }
         } else if (event.keyCode === CODE_ARROW_RIGHT) {
             const movedPiece = currentPiece.move(new Point(1, 0));
             if (currentPlayground.playgroundPieceFits(movedPiece)) {
-                return new KeyPressResult(currentPlayground, movedPiece);
+                return new KeyPressResult(currentPlayground, this, movedPiece, true, false);
             }
         } else if (event.keyCode === CODE_ARROW_DOWN) {
             const movedPiece = currentPiece.move(new Point(0, 1));
             if (currentPlayground.playgroundPieceFits(movedPiece)) {
-                return new KeyPressResult(currentPlayground, movedPiece);
+                return new KeyPressResult(currentPlayground, this, movedPiece, true, false);
             }
         }
 
-        return new KeyPressResult(currentPlayground, currentPiece);
+        return new KeyPressResult(currentPlayground, this, currentPiece, true, false);
     } catch (exception) {
-        debugger;
         if (!exception instanceof CollisionException) {
             throw exception;
         }

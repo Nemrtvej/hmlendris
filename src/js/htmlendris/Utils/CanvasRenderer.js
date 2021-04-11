@@ -49,6 +49,28 @@ CanvasRenderer.prototype.drawFilledSquare = function(colIndex, rowIndex, color) 
     //this._ctx.scale(this._blockSize, this._blockSize);
 }
 
+
+/**
+ */
+CanvasRenderer.prototype.drawPausedScreen = function() {
+    this._ctx.fillStyle = '#00d7d7';
+    this._ctx.fillRect(0, 0, this._cols * this._blockSize, this._rows * this._blockSize);
+    this._ctx.fillStyle = '#fff';
+
+    const pausedMeasurements = this._ctx.measureText("PAUSED");
+    this._ctx.fillText("PAUSED", (this._cols * this._blockSize / 2) - (pausedMeasurements.width /2), this._rows * this._blockSize / 2);
+}
+
+CanvasRenderer.prototype.drawGameOverScreen = function() {
+    this._ctx.fillStyle = '#00d7d7';
+    this._ctx.fillRect(0, 0, this._cols * this._blockSize, this._rows * this._blockSize);
+    this._ctx.fillStyle = '#fff';
+
+    const pausedMeasurements = this._ctx.measureText("You lost :(");
+    this._ctx.fillText("You lost :(", (this._cols * this._blockSize / 2) - (pausedMeasurements.width /2), this._rows * this._blockSize / 2);
+}
+
+
 CanvasRenderer.prototype.drawEmptySquare = function(colIndex, rowIndex) {
     this._ctx.fillStyle = '#00d7d7';
     this._ctx.fillRect(colIndex * this._blockSize, rowIndex * this._blockSize, this._blockSize, this._blockSize);

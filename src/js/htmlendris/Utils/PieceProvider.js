@@ -4,7 +4,10 @@ const PieceProvider = function(playgroundCols, playgroundRows) {
 };
 
 PieceProvider.prototype.getNextPiece = function() {
-    return new PlaygroundPiece(new Point(this._playgroundCols / 2, 0), this._createNextPiece(), 0);
+    return new PlaygroundPiece(new Point(Math.floor(this._playgroundCols / 2), 0), this._createNextPiece(), 0);
+};
+PieceProvider.prototype.getNullPiece = function() {
+    return new PlaygroundPiece(new Point(0, 0), new NullPiece(), 0);
 };
 
 PieceProvider.prototype._createNextPiece = function() {
