@@ -29,8 +29,14 @@ CanvasRenderer.prototype.render = function(matrix) {
 };
 
 
-CanvasRenderer.prototype.drawFilledSquare = function(colIndex, rowIndex) {
-    this._ctx.fillStyle = 'red';
+/**
+ *
+ * @param colIndex integer
+ * @param rowIndex integer
+ * @param color string
+ */
+CanvasRenderer.prototype.drawFilledSquare = function(colIndex, rowIndex, color) {
+    this._ctx.fillStyle = color;
     this._ctx.fillRect(colIndex, rowIndex, 1, 1);
 }
 

@@ -21,15 +21,53 @@ Matrix.prototype.withPiece = function(colIndex, rowIndex, piece) {
     let copy = this.withSquare(0, 0, this.getSquare(0, 0));
     for (let heightIndex = 0; heightIndex < shapeRows; heightIndex++) {
         for (let widthIndex = 0; widthIndex < shapeCols; widthIndex++) {
-            const currentSquare = this.getSquare(heightIndex + rowIndex, widthIndex + colIndex);
-            const newSquare = pieceShape.getSquare(heightIndex, widthIndex);
-
-            copy = copy.withSquare(heightIndex + rowIndex, widthIndex + colIndex, currentSquare.resolveCollision(newSquare));
+            try {
+                const currentSquare = this.getSquare(heightIndex + rowIndex, widthIndex + colIndex);
+                const newSquare = pieceShape.getSquare(heightIndex, widthIndex);
+                copy = copy.withSquare(heightIndex + rowIndex, widthIndex + colIndex, currentSquare.resolveCollision(newSquare));
+            } catch (exception) {
+                if (exception instanceof OutOfBoundsException) {
+                    throw new CollisionException();
+                } else {
+                    throw exception;
+                }
+            }
         }
     }
 
     return copy;
 }
+
+/**
+ *
+ * @param playgroundPiece PlaygroundPiece
+ * @returns {Matrix}
+ */
+Matrix.prototype.withPlaygroundPiece = function(playgroundPiece) {
+    return this.withPiece(
+        playgroundPiece.getPosition().getX(),
+        playgroundPiece.getPosition().getY(),
+        playgroundPiece.getPiece()
+    );
+};
+
+/**
+ *
+ * @param playgroundPiece PlaygroundPiece
+ * @returns {boolean}
+ */
+Matrix.prototype.playgroundPieceFits = function(playgroundPiece) {
+    try {
+        this.withPiece(
+            playgroundPiece.getPosition().getX(),
+            playgroundPiece.getPosition().getY(),
+            playgroundPiece.getPiece()
+        );
+        return true;
+    } catch (exception) {
+        return !exception instanceof CollisionException;
+    }
+};
 
 /**
  * @returns int
@@ -57,6 +95,10 @@ Matrix.prototype.getRows = function() {
  * @returns {AbstractSquare}
  */
 Matrix.prototype.getSquare = function(row, column) {
+    if (row < 0 || column < 0 || row >= this.getRows() || column >= this.getCols()) {
+        throw new OutOfBoundsException("Matrix coordinate is out of bounds.");
+    }
+
     return this._squares[row][column];
 }
 

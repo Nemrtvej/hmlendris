@@ -1,5 +1,5 @@
-const FilledSquare = function () {
-
+const FilledSquare = function (color) {
+    this._color = color;
 };
 
 FilledSquare.prototype = Object.create(AbstractSquare.prototype);
@@ -11,7 +11,7 @@ FilledSquare.prototype = Object.create(AbstractSquare.prototype);
  * @param rowIndex integer
  */
 FilledSquare.prototype.render = function(renderer, colIndex, rowIndex) {
-    renderer.drawFilledSquare(colIndex, rowIndex);
+    renderer.drawFilledSquare(colIndex, rowIndex, this._color);
 };
 
 /**
@@ -20,12 +20,11 @@ FilledSquare.prototype.render = function(renderer, colIndex, rowIndex) {
  * @returns {AbstractSquare}
  */
 FilledSquare.prototype.resolveCollision = function(otherPiece) {
-    console.log(this);
     if (otherPiece instanceof EmptySquare) {
         return this;
     }
 
-    throw new Exception('Collision between two Filled Squares may not occur');
+    throw new CollisionException('Collision between two Filled Squares would occur.');
 };
 
 

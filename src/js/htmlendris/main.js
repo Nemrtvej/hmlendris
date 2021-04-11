@@ -16,6 +16,7 @@ function main() {
     tetris.reset();
 
     setInterval(tetris.step.bind(tetris), 1000);
+    document.addEventListener('keydown', tetris.onKeyDown.bind(tetris));
 
     return;
     const testPiece = new PieceL();
