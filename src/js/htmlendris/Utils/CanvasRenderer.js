@@ -36,18 +36,27 @@ CanvasRenderer.prototype.render = function(matrix) {
  * @param color string
  */
 CanvasRenderer.prototype.drawFilledSquare = function(colIndex, rowIndex, color) {
+    this._ctx.fillStyle = 'black';
+    this._ctx.fillRect(colIndex * this._blockSize, rowIndex * this._blockSize, this._blockSize, this._blockSize);
     this._ctx.fillStyle = color;
-    this._ctx.fillRect(colIndex, rowIndex, 1, 1);
+    let thickness = 0.1;
+    this._ctx.fillRect(
+        (colIndex * this._blockSize) + thickness,
+        (rowIndex * this._blockSize) + thickness,
+        this._blockSize - thickness * 2,
+        this._blockSize - thickness * 2
+    );
+    //this._ctx.scale(this._blockSize, this._blockSize);
 }
 
 CanvasRenderer.prototype.drawEmptySquare = function(colIndex, rowIndex) {
-    this._ctx.fillStyle = 'blue';
-    this._ctx.fillRect(colIndex, rowIndex, 1, 1);
+    this._ctx.fillStyle = '#00d7d7';
+    this._ctx.fillRect(colIndex * this._blockSize, rowIndex * this._blockSize, this._blockSize, this._blockSize);
 }
 
 CanvasRenderer.prototype.fillGeneralBackground = function() {
     this._ctx.fillStyle = '#00d7d7';
-    this._ctx.fillRect(0, 0, this._cols, this._rows);
+    this._ctx.fillRect(0, 0, this._cols * this._blockSize, this._rows * this._blockSize);
 }
 
 CanvasRenderer.prototype.fillNextPieceBackground = function() {
@@ -72,7 +81,7 @@ CanvasRenderer.prototype._initialize = function() {
     ctx.canvas.width = this._cols * this._blockSize;
     ctx.canvas.height = this._rows * this._blockSize;
 
-    ctx.scale(this._blockSize, this._blockSize);
+    //ctx.scale(this._blockSize, this._blockSize);
     // ctx.scale(4, 4);
 
     return ctx;
