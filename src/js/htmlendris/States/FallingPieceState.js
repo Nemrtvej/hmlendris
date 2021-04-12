@@ -42,12 +42,13 @@ FallingPieceState.prototype.tick = function(time, currentPlayground, currentPiec
  */
 FallingPieceState.prototype.onKeyPress = function(event, currentPlayground, currentPiece, pieceProvider, renderer) {
 
+    const CODE_SPACE_BAR = 32;
     const CODE_ARROW_UP = 38;
     const CODE_ARROW_LEFT = 37;
     const CODE_ARROW_RIGHT = 39;
     const CODE_ARROW_DOWN = 40;
 
-    let knownCodes = [CODE_ARROW_UP, CODE_ARROW_LEFT, CODE_ARROW_RIGHT, CODE_ARROW_DOWN];
+    let knownCodes = [CODE_SPACE_BAR, CODE_ARROW_UP, CODE_ARROW_LEFT, CODE_ARROW_RIGHT, CODE_ARROW_DOWN];
 
     if (!knownCodes.includes(event.keyCode)) {
         return new KeyPressResult(currentPlayground, this, currentPiece, true, false);
@@ -76,6 +77,14 @@ FallingPieceState.prototype.onKeyPress = function(event, currentPlayground, curr
             if (currentPlayground.playgroundPieceFits(movedPiece)) {
                 return new KeyPressResult(currentPlayground, this, movedPiece, true, false);
             }
+        } else if (event.keyCode === CODE_SPACE_BAR) {
+            const freeFallPieceState = new FreeFallPieceState();
+            freeFallPieceState.setRunParameters(currentPlayground, currentPiece, renderer);
+            const handler = setInterval(freeFallPieceState.run.bind(freeFallPieceState), 100);
+            freeFallPieceState.setHandler(handler);
+
+            setTimeout(freeFallPieceState.run.bind(freeFallPieceState), 10);
+            return new KeyPressResult(currentPlayground, freeFallPieceState, currentPiece, true, false);
         }
 
         return new KeyPressResult(currentPlayground, this, currentPiece, true, false);
