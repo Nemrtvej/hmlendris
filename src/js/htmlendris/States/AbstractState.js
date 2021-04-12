@@ -3,7 +3,7 @@ const AbstractState = function() {
 };
 
 /**
- *
+ * @param time double
  * @param currentPlayground Matrix
  * @param currentPiece PlaygroundPiece
  * @param pieceProvider PieceProvider
@@ -11,8 +11,8 @@ const AbstractState = function() {
  *
  * @return {StepResult}
  */
-AbstractState.prototype.step = function(currentPlayground, currentPiece, pieceProvider, renderer) {
-    throw new Exception('step must be implemented');
+AbstractState.prototype.tick = function(time, currentPlayground, currentPiece, pieceProvider, renderer) {
+    throw new Exception('tick must be implemented');
 };
 
 /**

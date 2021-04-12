@@ -33,14 +33,19 @@ const Tetris = function(width, height, renderer, pieceProvider) {
     this._break = false;
 };
 
-Tetris.prototype.step = function() {
+Tetris.prototype.start = function() {
+    requestAnimationFrame(this.tick.bind(this));
+};
+
+Tetris.prototype.tick = function(timestamp) {
     if (this._break) {
+        requestAnimationFrame(this.tick.bind(this));
         return;
     }
 
     console.log('Entry step', this._currentState);
     try {
-        const stepResult = this._currentState.step(this._matrix, this._playgroundPiece, this._pieceProvider, this._renderer);
+        const stepResult = this._currentState.tick(timestamp, this._matrix, this._playgroundPiece, this._pieceProvider, this._renderer);
         console.log('Step result', stepResult);
         this._currentState = stepResult.getState();
         this._matrix = stepResult.getMatrix();
@@ -50,11 +55,13 @@ Tetris.prototype.step = function() {
             this.redraw();
         }
     } catch (exception) {
-        //debugger;
+        debugger;
         throw exception;
     }
+
     console.log('Step finished', this._currentState);
     console.log(this);
+    requestAnimationFrame(this.tick.bind(this));
 };
 
 Tetris.prototype.redraw = function() {
