@@ -1,11 +1,12 @@
-const FallingPieceState = function(initialTime = 0) {
-    this._STEP_DURATION = 1000;
-    this._previousTime = initialTime;
+RotatableStepAfterFreeFall = function(time) {
+    this._STEP_DURATION = 500;
+    this._previousTime = time;
 };
 
-FallingPieceState.prototype = Object.create(AbstractState.prototype);
+RotatableStepAfterFreeFall.prototype = Object.create(AbstractState.prototype);
 
 /**
+ *
  * @param time double
  * @param currentPlayground Matrix
  * @param currentPiece PlaygroundPiece
@@ -14,17 +15,14 @@ FallingPieceState.prototype = Object.create(AbstractState.prototype);
  *
  * @returns {StepResult}
  */
-FallingPieceState.prototype.tick = function(time, currentPlayground, currentPiece, pieceProvider, renderer) {
+RotatableStepAfterFreeFall.prototype.tick = function(time, currentPlayground, currentPiece, pieceProvider, renderer) {
     if (time - this._previousTime < this._STEP_DURATION) {
         return new StepResult(currentPlayground, this, currentPiece, false);
-    } else {
-        console.log(time, this._previousTime, time - this._previousTime);
-        this._previousTime = time;
     }
 
     const movedPiece = currentPiece.move(new Point(0, 1));
     if (currentPlayground.playgroundPieceFits(movedPiece)) {
-        return new StepResult(currentPlayground, this, movedPiece, true);
+        return new StepResult(currentPlayground, new FallingPieceState(time), currentPiece, true);
     } else {
         return new StepResult(currentPlayground.withPlaygroundPiece(currentPiece), new NewPieceState(time), pieceProvider.getNextPiece(), true);
     }
@@ -39,15 +37,12 @@ FallingPieceState.prototype.tick = function(time, currentPlayground, currentPiec
  * @param renderer CanvasRenderer
  * @return {KeyPressResult}
  */
-FallingPieceState.prototype.onKeyPress = function(event, currentPlayground, currentPiece, pieceProvider, renderer) {
-
-    const CODE_SPACE_BAR = 32;
+RotatableStepAfterFreeFall.prototype.onKeyPress = function(event, currentPlayground, currentPiece, pieceProvider, renderer) {
     const CODE_ARROW_UP = 38;
     const CODE_ARROW_LEFT = 37;
     const CODE_ARROW_RIGHT = 39;
-    const CODE_ARROW_DOWN = 40;
 
-    let knownCodes = [CODE_SPACE_BAR, CODE_ARROW_UP, CODE_ARROW_LEFT, CODE_ARROW_RIGHT, CODE_ARROW_DOWN];
+    let knownCodes = [CODE_ARROW_UP, CODE_ARROW_LEFT, CODE_ARROW_RIGHT];
 
     if (!knownCodes.includes(event.keyCode)) {
         return new KeyPressResult(currentPlayground, this, currentPiece, true, false);
@@ -71,13 +66,6 @@ FallingPieceState.prototype.onKeyPress = function(event, currentPlayground, curr
             if (currentPlayground.playgroundPieceFits(movedPiece)) {
                 return new KeyPressResult(currentPlayground, this, movedPiece, true, false);
             }
-        } else if (event.keyCode === CODE_ARROW_DOWN) {
-            const movedPiece = currentPiece.move(new Point(0, 1));
-            if (currentPlayground.playgroundPieceFits(movedPiece)) {
-                return new KeyPressResult(currentPlayground, this, movedPiece, true, false);
-            }
-        } else if (event.keyCode === CODE_SPACE_BAR) {
-            return new KeyPressResult(currentPlayground, new FreeFallPieceState(), currentPiece, true, false);
         }
 
         return new KeyPressResult(currentPlayground, this, currentPiece, true, false);

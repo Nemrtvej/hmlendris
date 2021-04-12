@@ -1,6 +1,6 @@
-const NewPieceState = function(currentTime) {
+const NewPieceState = function(initialTime = 0) {
     this._STEP_DURATION = 1000;
-    this._previousTime = currentTime;
+    this._previousTime = initialTime;
 };
 
 NewPieceState.prototype = Object.create(AbstractState.prototype);

@@ -43,10 +43,8 @@ Tetris.prototype.tick = function(timestamp) {
         return;
     }
 
-    console.log('Entry step', this._currentState);
     try {
         const stepResult = this._currentState.tick(timestamp, this._matrix, this._playgroundPiece, this._pieceProvider, this._renderer);
-        console.log('Step result', stepResult);
         this._currentState = stepResult.getState();
         this._matrix = stepResult.getMatrix();
         this._playgroundPiece = stepResult.getCurrentPiece();
@@ -59,8 +57,6 @@ Tetris.prototype.tick = function(timestamp) {
         throw exception;
     }
 
-    console.log('Step finished', this._currentState);
-    console.log(this);
     requestAnimationFrame(this.tick.bind(this));
 };
 
