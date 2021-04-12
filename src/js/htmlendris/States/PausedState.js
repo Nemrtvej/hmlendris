@@ -1,10 +1,11 @@
 const PausedState = function() {
+    this._currentTime = 0;
 };
 
 PausedState.prototype = Object.create(AbstractState.prototype);
 
 /**
- *
+ * @param time double
  * @param currentPlayground Matrix
  * @param currentPiece PlaygroundPiece
  * @param pieceProvider PieceProvider
@@ -12,8 +13,9 @@ PausedState.prototype = Object.create(AbstractState.prototype);
  *
  * @return {StepResult}
  */
-PausedState.prototype.step = function(currentPlayground, currentPiece, pieceProvider, renderer) {
+PausedState.prototype.tick = function(time, currentPlayground, currentPiece, pieceProvider, renderer) {
     renderer.drawPausedScreen();
+    this._currentTime = time;
     return new StepResult(currentPlayground, this, pieceProvider.getNullPiece(), false);
 };
 
@@ -38,7 +40,7 @@ PausedState.prototype.onKeyPress = function(event, currentPlayground, currentPie
     event.preventDefault();
 
     if (event.keyCode === CODE_SPACE_BAR) {
-        return new KeyPressResult(currentPlayground, new NewPieceState(), pieceProvider.getNextPiece(), true, true);
+        return new KeyPressResult(currentPlayground, new NewPieceState(this._currentTime), pieceProvider.getNextPiece(), true, true);
     }
 
     return new KeyPressResult(currentPlayground, this, currentPiece, false, false);

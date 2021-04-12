@@ -1,10 +1,12 @@
-const NewPieceState = function() {
+const NewPieceState = function(currentTime) {
+    this._STEP_DURATION = 1000;
+    this._previousTime = currentTime;
 };
 
 NewPieceState.prototype = Object.create(AbstractState.prototype);
 
 /**
- *
+ * @param time double
  * @param currentPlayground Matrix
  * @param currentPiece PlaygroundPiece
  * @param pieceProvider PieceProvider
@@ -12,13 +14,19 @@ NewPieceState.prototype = Object.create(AbstractState.prototype);
  *
  * @returns {StepResult}
  */
-NewPieceState.prototype.step = function(currentPlayground, currentPiece, pieceProvider, renderer) {
+NewPieceState.prototype.tick = function(time, currentPlayground, currentPiece, pieceProvider, renderer) {
+    if (time - this._previousTime < this._STEP_DURATION) {
+        return new StepResult(currentPlayground, this, currentPiece, false);
+    } else {
+        this._previousTime = time;
+    }
+
     if (currentPlayground.playgroundPieceFits(currentPiece)) {
         const delegate = new FallingPieceState();
-        return delegate.step(currentPlayground, currentPiece, pieceProvider, renderer);
+        return delegate.tick(time, currentPlayground, currentPiece, pieceProvider, renderer);
     } else {
         const delegate = new GameOverState();
-        return delegate.step(currentPlayground, currentPiece, pieceProvider, renderer);
+        return delegate.tick(time, currentPlayground, currentPiece, pieceProvider, renderer);
     }
 };
 

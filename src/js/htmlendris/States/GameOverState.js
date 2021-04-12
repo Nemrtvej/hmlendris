@@ -4,7 +4,7 @@ const GameOverState = function() {
 GameOverState.prototype = Object.create(AbstractState.prototype);
 
 /**
- *
+ * @param time double
  * @param currentPlayground Matrix
  * @param currentPiece PlaygroundPiece
  * @param pieceProvider PieceProvider
@@ -12,7 +12,7 @@ GameOverState.prototype = Object.create(AbstractState.prototype);
  *
  * @return {StepResult}
  */
-GameOverState.prototype.step = function(currentPlayground, currentPiece, pieceProvider, renderer) {
+GameOverState.prototype.tick = function(time, currentPlayground, currentPiece, pieceProvider, renderer) {
     renderer.drawGameOverScreen();
     return new StepResult(currentPlayground, this, pieceProvider.getNullPiece(), false);
 };

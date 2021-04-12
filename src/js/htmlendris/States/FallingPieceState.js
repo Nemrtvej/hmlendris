@@ -1,11 +1,12 @@
 const FallingPieceState = function() {
-
+    this._STEP_DURATION = 1000;
+    this._previousTime = 0;
 };
 
 FallingPieceState.prototype = Object.create(AbstractState.prototype);
 
 /**
- *
+ * @param time double
  * @param currentPlayground Matrix
  * @param currentPiece PlaygroundPiece
  * @param pieceProvider PieceProvider
@@ -13,13 +14,19 @@ FallingPieceState.prototype = Object.create(AbstractState.prototype);
  *
  * @returns {StepResult}
  */
-FallingPieceState.prototype.step = function(currentPlayground, currentPiece, pieceProvider, renderer) {
+FallingPieceState.prototype.tick = function(time, currentPlayground, currentPiece, pieceProvider, renderer) {
+    if (time - this._previousTime < this._STEP_DURATION) {
+        return new StepResult(currentPlayground, this, currentPiece, false);
+    } else {
+        this._previousTime = time;
+    }
+
     const movedPiece = currentPiece.move(new Point(0, 1));
 
     if (currentPlayground.playgroundPieceFits(movedPiece)) {
         return new StepResult(currentPlayground, this, movedPiece, true);
     } else {
-        return new StepResult(currentPlayground.withPlaygroundPiece(currentPiece), new NewPieceState(), pieceProvider.getNextPiece(), true);
+        return new StepResult(currentPlayground.withPlaygroundPiece(currentPiece), new NewPieceState(time), pieceProvider.getNextPiece(), true);
     }
 
 };
