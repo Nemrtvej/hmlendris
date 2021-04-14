@@ -18,7 +18,6 @@ FallingPieceState.prototype.tick = function(time, currentPlayground, currentPiec
     if (time - this._previousTime < this._STEP_DURATION) {
         return new StepResult(currentPlayground, this, currentPiece, false);
     } else {
-        console.log(time, this._previousTime, time - this._previousTime);
         this._previousTime = time;
     }
 

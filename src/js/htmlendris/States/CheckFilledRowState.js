@@ -1,5 +1,6 @@
 const CheckFilledRowState = function(initialTime = 0) {
     this._time = initialTime;
+    this._previouslyProcessedRow = null;
 };
 
 CheckFilledRowState.prototype = Object.create(AbstractState.prototype);
@@ -15,15 +16,24 @@ CheckFilledRowState.prototype = Object.create(AbstractState.prototype);
  * @returns {StepResult}
  */
 CheckFilledRowState.prototype.tick = function(time, currentPlayground, currentPiece, pieceProvider, renderer) {
+    if (this._previouslyProcessedRow === null) {
+        this._previouslyProcessedRow = currentPlayground.getRows();
+    }
+    const currentRow = this._previouslyProcessedRow - 1;
 
-    for (let currentRow = currentPlayground.getRows() - 1; currentRow >= 0; currentRow--) {
+    if (this._previouslyProcessedRow >= 0) {
         if (this._isRowFilled(currentRow, currentPlayground)) {
             currentPlayground = currentPlayground.removeRow(currentRow).getMatrix();
-            currentRow++; // make sure to recheck the row we just sent down in case it is filled to
+        } else {
+            this._previouslyProcessedRow = currentRow;
         }
     }
 
-    return new StepResult(currentPlayground, new NewPieceState(this._time), currentPiece, true);
+    if (this._previouslyProcessedRow === 0) {
+        return new StepResult(currentPlayground, new NewPieceState(this._time), currentPiece, true);
+    } else {
+        return new StepResult(currentPlayground, this, currentPiece, true);
+    }
 };
 
 /**
