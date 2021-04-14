@@ -26,3 +26,7 @@ EmptySquare.prototype.resolveCollision = function(otherPiece) {
 EmptySquare.prototype.toString = function() {
     return "-";
 }
+
+EmptySquare.prototype.isFilled = function() {
+    return false;
+};

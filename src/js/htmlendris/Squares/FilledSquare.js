@@ -27,7 +27,10 @@ FilledSquare.prototype.resolveCollision = function(otherPiece) {
     throw new CollisionException('Collision between two Filled Squares would occur.');
 };
 
-
 FilledSquare.prototype.toString = function() {
     return "x";
 }
+
+FilledSquare.prototype.isFilled = function() {
+    return true;
+};

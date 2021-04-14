@@ -24,7 +24,7 @@ RotatableStepAfterFreeFall.prototype.tick = function(time, currentPlayground, cu
     if (currentPlayground.playgroundPieceFits(movedPiece)) {
         return new StepResult(currentPlayground, new FallingPieceState(time), currentPiece, true);
     } else {
-        return new StepResult(currentPlayground.withPlaygroundPiece(currentPiece), new NewPieceState(time), pieceProvider.getNextPiece(), true);
+        return new StepResult(currentPlayground.withPlaygroundPiece(currentPiece), new CheckFilledRowState(time), pieceProvider.getNextPiece(), true);
     }
 };
 

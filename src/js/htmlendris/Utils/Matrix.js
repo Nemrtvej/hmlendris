@@ -130,7 +130,7 @@ Matrix.prototype.getRows = function() {
  */
 Matrix.prototype.getSquare = function(row, column) {
     if (row < 0 || column < 0 || row >= this.getRows() || column >= this.getCols()) {
-        throw new OutOfBoundsException("Matrix coordinate is out of bounds.");
+        throw new OutOfBoundsException(`Matrix coordinate [${column}, ${row}] is out of bounds.`);
     }
 
     return this._squares[row][column];
@@ -160,6 +160,47 @@ Matrix.prototype.withSquare = function(row, column, square) {
 
     return matrixFromSquares(copy);
 }
+
+/**
+ * @param rowToRemove integer
+ * @returns {RemoveRowResponse}
+ */
+Matrix.prototype.removeRow = function(rowToRemove) {
+
+    let newMatrix = new Matrix(this._cols, this._rows);
+    const removedData = this._getRow(rowToRemove);
+
+    for (let currentRow = this._rows -1; currentRow >= 0; currentRow--) {
+        if (currentRow === 0) {
+            newMatrix._setRow(currentRow, this._generateSquares(this._cols, 1)[0]);
+        } else if (currentRow > rowToRemove) {
+            newMatrix._setRow(currentRow, this._getRow(currentRow));
+        } else if (currentRow <= rowToRemove) {
+            newMatrix._setRow(currentRow, this._getRow(currentRow-1));
+        }
+    }
+
+    return new RemoveRowResponse(newMatrix, removedData);
+};
+
+/**
+ * @param rowIndex integer
+ * @param squares AbstractSquare[]
+ * @private
+ */
+Matrix.prototype._setRow = function(rowIndex, squares) {
+    this._squares[rowIndex] = squares;
+};
+
+/**
+ * @param rowIndex integer
+ * @return AbstractSquare[]
+ * @private
+ */
+Matrix.prototype._getRow = function(rowIndex) {
+    /* suggestion: maybe clone this one day? */
+    return this._squares[rowIndex];
+};
 
 /**
  * @param cols integer

@@ -25,3 +25,7 @@ AbstractSquare.prototype.resolveCollision = function(otherPiece) {
 AbstractSquare.prototype.toString = function() {
     throw new Exception('toString must be implemented');
 }
+
+AbstractSquare.prototype.isFilled = function() {
+    throw new Exception('isFilled must be implemented');
+};
