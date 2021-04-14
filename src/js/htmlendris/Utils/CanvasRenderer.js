@@ -1,3 +1,9 @@
+const Colors = {
+    BACKGROUND_TOP: '#1179A2',
+    BACKGROUND_BOTTOM: '#000000',
+};
+
+
 
 const CanvasRenderer = function(wallCanvas, cols, rows, blockSize) {
     this._wallCanvas = wallCanvas;
@@ -72,7 +78,12 @@ CanvasRenderer.prototype.drawGameOverScreen = function() {
 
 
 CanvasRenderer.prototype.drawEmptySquare = function(colIndex, rowIndex) {
-    this._ctx.fillStyle = '#00d7d7';
+
+    if (rowIndex < Math.floor(this._rows / 2 )) {
+        this._ctx.fillStyle = Colors.BACKGROUND_TOP;
+    } else {
+        this._ctx.fillStyle = Colors.BACKGROUND_BOTTOM;
+    }
     this._ctx.fillRect(colIndex * this._blockSize, rowIndex * this._blockSize, this._blockSize, this._blockSize);
 }
 
