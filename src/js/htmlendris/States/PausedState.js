@@ -40,7 +40,7 @@ PausedState.prototype.onKeyPress = function(event, currentPlayground, currentPie
     event.preventDefault();
 
     if (event.keyCode === CODE_SPACE_BAR) {
-        return new KeyPressResult(currentPlayground, new NewPieceState(this._currentTime), pieceProvider.getNextPiece(), true, true);
+        return new KeyPressResult(currentPlayground, new GenerateInitialPiecesState(this._currentTime), pieceProvider.getNextPiece(), true, true);
     }
 
     return new KeyPressResult(currentPlayground, this, currentPiece, false, false);
