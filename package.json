@@ -1,0 +1,28 @@
+{
+  "name": "htmlendris",
+  "version": "0.0.1",
+  "description": "Reimplementation of Extendris DOS game",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Nemrtvej/htmlendris.git"
+  },
+  "type": "module",
+  "keywords": [
+    "game"
+  ],
+  "author": "Marek Makovec <marovi@spadnul.net>",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "bugs": {
+    "url": "https://github.com/Nemrtvej/htmlendris/issues"
+  },
+  "homepage": "https://github.com/Nemrtvej/htmlendris#readme",
+  "devDependencies": {
+    "mocha": "^8.3.2"
+  },
+  "scripts": {
+    "test": "mocha src/**/*.test.js --recursive",
+    "test-debug": "mocha src/**/*.test.js --recursive --inspect-brk",
+    "start": "nodemon --inspect=0.0.0.0:9229 server.js"
+  }
+}

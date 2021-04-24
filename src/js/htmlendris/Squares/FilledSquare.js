@@ -1,4 +1,4 @@
-const FilledSquare = function (color) {
+export const FilledSquare = function (color) {
     this._color = color;
 };
 

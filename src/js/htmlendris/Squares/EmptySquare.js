@@ -1,4 +1,4 @@
-const EmptySquare = function () {
+export const EmptySquare = function () {
 
 };
 
