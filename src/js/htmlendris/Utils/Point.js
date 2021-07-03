@@ -1,5 +1,5 @@
 
-const Point = function(x, y) {
+export const Point = function(x, y) {
     this._x = x;
     this._y = y;
 };

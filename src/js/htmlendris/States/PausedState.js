@@ -1,4 +1,9 @@
-const PausedState = function() {
+import {AbstractState} from "./AbstractState.js";
+import {GenerateInitialPiecesState} from "./GenerateInitialPiecesState.js";
+import {StepResult} from "./StateResult/StepResult.js";
+import {KeyPressResult} from "./StateResult/KeyPressResult.js";
+
+export const PausedState = function() {
     this._currentTime = 0;
 };
 

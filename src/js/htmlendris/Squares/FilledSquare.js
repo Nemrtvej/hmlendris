@@ -1,4 +1,8 @@
-const FilledSquare = function (color) {
+import {AbstractSquare} from "./AbstractSquare.js";
+import {CollisionException} from "/js/htmlendris/Exceptions/CollisionException.js";
+import {EmptySquare} from "./EmptySquare.js";
+
+export const FilledSquare = function (color) {
     this._color = color;
 };
 

@@ -1,4 +1,4 @@
-const AbstractState = function() {
+export const AbstractState = function() {
 
 };
 

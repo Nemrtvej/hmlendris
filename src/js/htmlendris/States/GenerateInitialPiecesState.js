@@ -1,4 +1,11 @@
-const GenerateInitialPiecesState = function(initialTime = 0) {
+import {AbstractState} from "./AbstractState.js";
+import {FallingPieceState} from "./FallingPieceState.js";
+import {FilledSquare} from "/js/htmlendris/Squares/FilledSquare.js";
+import {KeyPressResult} from "./StateResult/KeyPressResult.js";
+import {Matrix} from "/js/htmlendris/Utils/Matrix.js";
+import {StepResult} from "./StateResult/StepResult.js";
+
+export const GenerateInitialPiecesState = function(initialTime = 0) {
     this._previousTime = initialTime;
 };
 

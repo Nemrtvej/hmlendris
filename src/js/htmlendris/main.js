@@ -1,3 +1,6 @@
+import {CanvasRenderer} from "/js/htmlendris/Utils/CanvasRenderer.js";
+import {PieceProvider} from "/js/htmlendris/Utils/PieceProvider.js";
+import {Tetris} from "./Tetris.js";
 
 $(document).ready(function() {
     main();

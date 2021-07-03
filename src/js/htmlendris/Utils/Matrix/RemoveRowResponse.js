@@ -3,7 +3,7 @@
  * @param matrix Matrix
  * @param removedRow AbstractSquare[]
  */
-const RemoveRowResponse = function(matrix, removedRow) {
+export const RemoveRowResponse = function(matrix, removedRow) {
     this._matrix = matrix;
     this._removedRow = removedRow;
 };

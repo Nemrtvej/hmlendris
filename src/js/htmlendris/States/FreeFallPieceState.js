@@ -1,4 +1,10 @@
-const FreeFallPieceState = function() {
+import {AbstractState} from "./AbstractState.js";
+import {KeyPressResult} from "./StateResult/KeyPressResult.js";
+import {Point} from '/js/htmlendris/Utils/Point.js';
+import {RotatableStepAfterFreeFall} from "./RotatableStepAfterFreeFall.js";
+import {StepResult} from "./StateResult/StepResult.js";
+
+export const FreeFallPieceState = function() {
     this._STEP_DURATION = 100;
     this._previousTime = 0;
 };

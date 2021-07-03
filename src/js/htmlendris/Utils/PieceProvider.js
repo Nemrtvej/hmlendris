@@ -1,4 +1,15 @@
-const PieceProvider = function(playgroundCols, playgroundRows) {
+import {NullPiece} from '/js/htmlendris/Pieces/NullPiece.js';
+import {PieceI} from '/js/htmlendris/Pieces/PieceI.js';
+import {PieceJ} from '/js/htmlendris/Pieces/PieceJ.js';
+import {PieceL} from '/js/htmlendris/Pieces/PieceL.js';
+import {PieceO} from '/js/htmlendris/Pieces/PieceO.js';
+import {PieceS} from '/js/htmlendris/Pieces/PieceS.js';
+import {PieceT} from '/js/htmlendris/Pieces/PieceT.js';
+import {PieceZ} from '/js/htmlendris/Pieces/PieceZ.js';
+import {PlaygroundPiece} from '/js/htmlendris/Utils/PlaygroundPiece.js';
+import {Point} from '/js/htmlendris/Utils/Point.js';
+
+export const PieceProvider = function(playgroundCols, playgroundRows) {
     this._playgroundCols = playgroundCols;
     this._playgroundRows = playgroundRows;
 };

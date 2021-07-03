@@ -5,7 +5,7 @@ const Colors = {
 
 
 
-const CanvasRenderer = function(wallCanvas, cols, rows, blockSize) {
+export const CanvasRenderer = function(wallCanvas, cols, rows, blockSize) {
     this._wallCanvas = wallCanvas;
     this._blockSize = blockSize;
     this._cols = cols;

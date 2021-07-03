@@ -6,7 +6,7 @@
  * @param shouldRedraw boolean
  * @constructor
  */
-const StepResult = function(matrix, state, currentPiece, shouldRedraw) {
+export const StepResult = function(matrix, state, currentPiece, shouldRedraw) {
     this._matrix = matrix;
     this._state = state;
     this._currentPiece = currentPiece;

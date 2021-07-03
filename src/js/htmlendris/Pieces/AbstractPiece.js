@@ -1,4 +1,4 @@
-const AbstractPiece = function() {
+export const AbstractPiece = function() {
 
 };
 
