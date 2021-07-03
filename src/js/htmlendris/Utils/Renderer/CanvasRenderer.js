@@ -1,3 +1,5 @@
+import {AbstractRenderer} from "./AbstractRenderer.js";
+
 const Colors = {
     BACKGROUND_TOP: '#1179A2',
     BACKGROUND_BOTTOM: '#000000',
@@ -21,6 +23,9 @@ export const CanvasRenderer = function(wallCanvas, cols, rows, blockSize) {
     this._GENERAL_WIDTH = 50;
     this._GENERAL_HEIGHT = 50;
 };
+
+CanvasRenderer.prototype = Object.create(AbstractRenderer.prototype);
+
 
 /**
  *

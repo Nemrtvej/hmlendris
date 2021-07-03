@@ -1,4 +1,4 @@
-import {CanvasRenderer} from "/js/htmlendris/Utils/CanvasRenderer.js";
+import {CanvasRenderer} from "/js/htmlendris/Utils/Renderer/CanvasRenderer.js";
 import {PieceProvider} from "/js/htmlendris/Utils/PieceProvider.js";
 import {Tetris} from "./Tetris.js";
 

@@ -13,7 +13,7 @@ GameOverState.prototype = Object.create(AbstractState.prototype);
  * @param currentPlayground Matrix
  * @param currentPiece PlaygroundPiece
  * @param pieceProvider PieceProvider
- * @param renderer CanvasRenderer
+ * @param renderer AbstractRenderer
  *
  * @return {StepResult}
  */
@@ -27,7 +27,7 @@ GameOverState.prototype.tick = function(time, currentPlayground, currentPiece, p
  * @param currentPlayground Matrix
  * @param currentPiece PlaygroundPiece
  * @param pieceProvider PieceProvider
- * @param renderer CanvasRenderer
+ * @param renderer AbstractRenderer
  * @return {KeyPressResult}
  */
 GameOverState.prototype.onKeyPress = function(event, currentPlayground, currentPiece, pieceProvider, renderer) {
