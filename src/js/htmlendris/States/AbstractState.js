@@ -7,7 +7,7 @@ export const AbstractState = function() {
  * @param currentPlayground Matrix
  * @param currentPiece PlaygroundPiece
  * @param pieceProvider PieceProvider
- * @param renderer CanvasRenderer
+ * @param renderer AbstractRenderer
  *
  * @return {StepResult}
  */
@@ -20,7 +20,7 @@ AbstractState.prototype.tick = function(time, currentPlayground, currentPiece, p
  * @param currentPlayground Matrix
  * @param currentPiece PlaygroundPiece
  * @param pieceProvider PieceProvider
- * @param renderer CanvasRenderer
+ * @param renderer AbstractRenderer
  * @return {KeyPressResult}
  */
 AbstractState.prototype.onKeyPress = function(event, currentPlayground, currentPiece, pieceProvider, renderer) {

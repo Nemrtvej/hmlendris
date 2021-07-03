@@ -16,7 +16,7 @@ CheckFilledRowState.prototype = Object.create(AbstractState.prototype);
  * @param currentPlayground Matrix
  * @param currentPiece PlaygroundPiece
  * @param pieceProvider PieceProvider
- * @param renderer CanvasRenderer
+ * @param renderer AbstractRenderer
  *
  * @returns {StepResult}
  */
@@ -46,7 +46,7 @@ CheckFilledRowState.prototype.tick = function(time, currentPlayground, currentPi
  * @param currentPlayground Matrix
  * @param currentPiece PlaygroundPiece
  * @param pieceProvider PieceProvider
- * @param renderer CanvasRenderer
+ * @param renderer AbstractRenderer
  * @return {KeyPressResult}
  */
 CheckFilledRowState.prototype.onKeyPress = function(event, currentPlayground, currentPiece, pieceProvider, renderer) {

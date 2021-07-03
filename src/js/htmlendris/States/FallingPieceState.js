@@ -18,7 +18,7 @@ FallingPieceState.prototype = Object.create(AbstractState.prototype);
  * @param currentPlayground Matrix
  * @param currentPiece PlaygroundPiece
  * @param pieceProvider PieceProvider
- * @param renderer CanvasRenderer
+ * @param renderer AbstractRenderer
  *
  * @returns {StepResult}
  */
@@ -43,7 +43,7 @@ FallingPieceState.prototype.tick = function(time, currentPlayground, currentPiec
  * @param currentPlayground Matrix
  * @param currentPiece PlaygroundPiece
  * @param pieceProvider PieceProvider
- * @param renderer CanvasRenderer
+ * @param renderer AbstractRenderer
  * @return {KeyPressResult}
  */
 FallingPieceState.prototype.onKeyPress = function(event, currentPlayground, currentPiece, pieceProvider, renderer) {

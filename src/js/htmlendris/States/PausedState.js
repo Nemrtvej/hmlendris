@@ -14,7 +14,7 @@ PausedState.prototype = Object.create(AbstractState.prototype);
  * @param currentPlayground Matrix
  * @param currentPiece PlaygroundPiece
  * @param pieceProvider PieceProvider
- * @param renderer CanvasRenderer
+ * @param renderer AbstractRenderer
  *
  * @return {StepResult}
  */
@@ -29,7 +29,7 @@ PausedState.prototype.tick = function(time, currentPlayground, currentPiece, pie
  * @param currentPlayground Matrix
  * @param currentPiece PlaygroundPiece
  * @param pieceProvider PieceProvider
- * @param renderer CanvasRenderer
+ * @param renderer AbstractRenderer
  * @return {KeyPressResult}
  */
 PausedState.prototype.onKeyPress = function(event, currentPlayground, currentPiece, pieceProvider, renderer) {
