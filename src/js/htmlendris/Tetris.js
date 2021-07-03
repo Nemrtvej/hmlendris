@@ -1,3 +1,6 @@
+import {Matrix} from '/js/htmlendris/Utils/Matrix.js';
+import {PausedState} from '/js/htmlendris/States/PausedState.js';
+
 /**
  *
  * @param width integer
@@ -6,7 +9,7 @@
  * @param pieceProvider PieceProvider
  * @constructor
  */
-const Tetris = function(width, height, renderer, pieceProvider) {
+export const Tetris = function(width, height, renderer, pieceProvider) {
     this._width = width;
     this._height = height;
 

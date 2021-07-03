@@ -1,4 +1,11 @@
-const NewPieceState = function(initialTime = 0) {
+import {AbstractState} from "./AbstractState.js";
+import {GameOverState} from "./GameOverState.js";
+import {FallingPieceState} from "./FallingPieceState.js";
+import {StepResult} from "./StateResult/StepResult.js";
+import {KeyPressResult} from "./StateResult/KeyPressResult.js";
+
+
+export const NewPieceState = function(initialTime = 0) {
     this._STEP_DURATION = 1000;
     this._previousTime = initialTime;
 };

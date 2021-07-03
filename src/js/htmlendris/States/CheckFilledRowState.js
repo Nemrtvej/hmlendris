@@ -1,4 +1,9 @@
-const CheckFilledRowState = function(initialTime = 0) {
+import {AbstractState} from "./AbstractState.js";
+import {NewPieceState} from "./NewPieceState.js";
+import {StepResult} from "./StateResult/StepResult.js";
+import {KeyPressResult} from "./StateResult/KeyPressResult.js";
+
+export const CheckFilledRowState = function(initialTime = 0) {
     this._time = initialTime;
     this._previouslyProcessedRow = null;
 };

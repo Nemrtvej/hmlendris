@@ -1,4 +1,9 @@
-const PieceZ = function(color) {
+import {AbstractPiece} from './AbstractPiece.js'
+import {EmptySquare} from "/js/htmlendris/Squares/EmptySquare.js";
+import {FilledSquare} from "/js/htmlendris/Squares/FilledSquare.js";
+import {matrixFromSquares} from "/js/htmlendris/Utils/Matrix.js";
+
+export const PieceZ = function(color) {
     this._color = color;
     AbstractPiece.call(this);
 };

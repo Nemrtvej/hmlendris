@@ -1,4 +1,9 @@
-const GameOverState = function() {
+import {AbstractState} from "./AbstractState.js";
+import {KeyPressResult} from "./StateResult/KeyPressResult.js";
+import {PausedState} from "./PausedState.js";
+import {StepResult} from "./StateResult/StepResult.js";
+
+export const GameOverState = function() {
 };
 
 GameOverState.prototype = Object.create(AbstractState.prototype);

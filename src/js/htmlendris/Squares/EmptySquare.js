@@ -1,4 +1,6 @@
-const EmptySquare = function () {
+import {AbstractSquare} from "./AbstractSquare.js";
+
+export const EmptySquare = function () {
 
 };
 

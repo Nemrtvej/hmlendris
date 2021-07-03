@@ -1,4 +1,12 @@
-RotatableStepAfterFreeFall = function(time) {
+import {AbstractState} from "./AbstractState.js";
+import {CheckFilledRowState} from "./CheckFilledRowState.js";
+import {CollisionException} from "/js/htmlendris/Exceptions/CollisionException.js";
+import {KeyPressResult} from "./StateResult/KeyPressResult.js";
+import {FallingPieceState} from "./FallingPieceState.js";
+import {Point} from '/js/htmlendris/Utils/Point.js';
+import {StepResult} from "./StateResult/StepResult.js";
+
+export const RotatableStepAfterFreeFall = function(time) {
     this._STEP_DURATION = 500;
     this._previousTime = time;
 };

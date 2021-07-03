@@ -7,7 +7,7 @@
  * @param shouldReset bool
  * @constructor
  */
-const KeyPressResult = function(matrix, state, currentPiece, shouldRedraw, shouldReset) {
+export const KeyPressResult = function(matrix, state, currentPiece, shouldRedraw, shouldReset) {
     this._matrix = matrix;
     this._state = state;
     this._currentPiece = currentPiece

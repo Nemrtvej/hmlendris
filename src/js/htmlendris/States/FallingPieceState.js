@@ -1,4 +1,12 @@
-const FallingPieceState = function(initialTime = 0) {
+import {AbstractState} from "./AbstractState.js";
+import {CheckFilledRowState} from "./CheckFilledRowState.js";
+import {CollisionException} from "/js/htmlendris/Exceptions/CollisionException.js";
+import {FreeFallPieceState} from "./FreeFallPieceState.js";
+import {KeyPressResult} from "./StateResult/KeyPressResult.js";
+import {StepResult} from "./StateResult/StepResult.js";
+import {Point} from '/js/htmlendris/Utils/Point.js';
+
+export const FallingPieceState = function(initialTime = 0) {
     this._STEP_DURATION = 1000;
     this._previousTime = initialTime;
 };

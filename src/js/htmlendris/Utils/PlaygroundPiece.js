@@ -1,3 +1,5 @@
+import {Point} from '/js/htmlendris/Utils/Point.js';
+
 /**
  *
  * @param initialPosition Point
@@ -5,7 +7,7 @@
  * @param orientation integer
  * @constructor
  */
-const PlaygroundPiece = function(initialPosition, piece, orientation) {
+export const PlaygroundPiece = function(initialPosition, piece, orientation) {
     this._position = initialPosition;
     this._piece = piece;
     this._orientation = orientation;

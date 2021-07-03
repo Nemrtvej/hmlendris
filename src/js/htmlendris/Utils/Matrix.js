@@ -1,4 +1,19 @@
-const Matrix = function(cols, rows) {
+import {CollisionException} from "/js/htmlendris/Exceptions/CollisionException.js";
+import {EmptySquare} from "/js/htmlendris/Squares/EmptySquare.js";
+import {OutOfBoundsException} from "/js/htmlendris/Exceptions/OutOfBoundsException.js";
+import {RemoveRowResponse} from "/js/htmlendris/Utils/Matrix/RemoveRowResponse.js";
+
+export const matrixFromSquares = function(squares) {
+    let rows = squares.length;
+    let cols = rows > 0 ? squares[0].length: 0;
+
+    const newMatrix = new Matrix(cols, rows);
+    newMatrix._setSquares(squares);
+
+    return newMatrix;
+}
+
+export const Matrix = function(cols, rows) {
     this._cols = cols;
     this._rows = rows;
 
@@ -228,14 +243,4 @@ Matrix.prototype._generateSquares = function(cols, rows) {
  */
 Matrix.prototype._setSquares = function(squares) {
     this._squares = squares;
-}
-
-matrixFromSquares = function(squares) {
-    let rows = squares.length;
-    let cols = rows > 0 ? squares[0].length: 0;
-
-    const newMatrix = new Matrix(cols, rows);
-    newMatrix._setSquares(squares);
-
-    return newMatrix;
 }
