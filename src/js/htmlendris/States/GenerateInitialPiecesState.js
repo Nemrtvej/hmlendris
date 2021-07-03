@@ -11,14 +11,14 @@ export const GenerateInitialPiecesState = function(initialTime = 0) {
 
 GenerateInitialPiecesState.prototype = Object.create(AbstractState.prototype);
 
+
 /**
- * @param time double
- * @param currentPlayground Matrix
- * @param currentPiece PlaygroundPiece
- * @param pieceProvider PieceProvider
- * @param renderer AbstractRenderer
- *
- * @returns {StepResult}
+ * @param {number} time
+ * @param {import('/js/htmlendris/Utils/Matrix').Matrix} currentPlayground
+ * @param {import('/js/htmlendris/Pieces/AbstractPiece').AbstractPiece} currentPiece
+ * @param {import('/js/htmlendris/Utils/PieceProvider').PieceProvider} pieceProvider
+ * @param {import('/js/htmlendris/Utils/Renderer/AbstractRenderer').AbstractRenderer} renderer
+ * @return {import('./StateResult/StepResult').StepResult}
  */
 GenerateInitialPiecesState.prototype.tick = function(time, currentPlayground, currentPiece, pieceProvider, renderer) {
     const filledMatrix = this._fillMatrix(currentPlayground.getCols(), currentPlayground.getRows());
@@ -28,12 +28,12 @@ GenerateInitialPiecesState.prototype.tick = function(time, currentPlayground, cu
 
 
 /**
- * @param event
- * @param currentPlayground Matrix
- * @param currentPiece PlaygroundPiece
- * @param pieceProvider PieceProvider
- * @param renderer AbstractRenderer
- * @return {KeyPressResult}
+ * @param {Event} event
+ * @param {import('/js/htmlendris/Utils/Matrix').Matrix} currentPlayground
+ * @param {import('/js/htmlendris/Pieces/AbstractPiece').AbstractPiece} currentPiece
+ * @param {import('/js/htmlendris/Utils/PieceProvider').PieceProvider} pieceProvider
+ * @param {import('/js/htmlendris/Utils/Renderer/AbstractRenderer').AbstractRenderer} renderer
+ * @return {import('./StateResult/KeyPressResult').KeyPressResult}
  */
 GenerateInitialPiecesState.prototype.onKeyPress = function(event, currentPlayground, currentPiece, pieceProvider, renderer) {
     const delegate = new FallingPieceState();

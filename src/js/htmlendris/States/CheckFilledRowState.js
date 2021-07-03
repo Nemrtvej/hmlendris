@@ -12,13 +12,12 @@ CheckFilledRowState.prototype = Object.create(AbstractState.prototype);
 
 
 /**
- * @param time double
- * @param currentPlayground Matrix
- * @param currentPiece PlaygroundPiece
- * @param pieceProvider PieceProvider
- * @param renderer AbstractRenderer
- *
- * @returns {StepResult}
+ * @param {number} time
+ * @param {import('/js/htmlendris/Utils/Matrix').Matrix} currentPlayground
+ * @param {import('/js/htmlendris/Pieces/AbstractPiece').AbstractPiece} currentPiece
+ * @param {import('/js/htmlendris/Utils/PieceProvider').PieceProvider} pieceProvider
+ * @param {import('/js/htmlendris/Utils/Renderer/AbstractRenderer').AbstractRenderer} renderer
+ * @return {import('./StateResult/StepResult').StepResult}
  */
 CheckFilledRowState.prototype.tick = function(time, currentPlayground, currentPiece, pieceProvider, renderer) {
     if (this._previouslyProcessedRow === null) {
@@ -42,12 +41,12 @@ CheckFilledRowState.prototype.tick = function(time, currentPlayground, currentPi
 };
 
 /**
- * @param event
- * @param currentPlayground Matrix
- * @param currentPiece PlaygroundPiece
- * @param pieceProvider PieceProvider
- * @param renderer AbstractRenderer
- * @return {KeyPressResult}
+ * @param {Event} event
+ * @param {import('/js/htmlendris/Utils/Matrix').Matrix} currentPlayground
+ * @param {import('/js/htmlendris/Pieces/AbstractPiece').AbstractPiece} currentPiece
+ * @param {import('/js/htmlendris/Utils/PieceProvider').PieceProvider} pieceProvider
+ * @param {import('/js/htmlendris/Utils/Renderer/AbstractRenderer').AbstractRenderer} renderer
+ * @return {import('./StateResult/KeyPressResult').KeyPressResult}
  */
 CheckFilledRowState.prototype.onKeyPress = function(event, currentPlayground, currentPiece, pieceProvider, renderer) {
     return new KeyPressResult(currentPlayground, this, currentPiece, false, false);
