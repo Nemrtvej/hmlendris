@@ -7,7 +7,7 @@
  * @param borderWidth integer
  * @constructor
  */
-const Diamants = function(renderer, origin, width, height, borderWidth) {
+export const Diamants = function(renderer, origin, width, height, borderWidth) {
     this._renderer = renderer;
     this._origin = origin;
     this._width = width;
